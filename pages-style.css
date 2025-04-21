@@ -1,0 +1,99 @@
+.rubik-font {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 120%;
+    font-style: normal;
+    direction: rtl;
+}
+
+#pagetitle{
+    font-size: 5vh;
+    text-align: right;
+    margin-right: 5vh;
+}
+header{
+    background-color: rgb(28, 22, 66);
+    border-radius: 1vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color:white;
+}  
+
+.planetbig{
+    position: absolute;
+    animation-name: introplanet;
+    animation-duration: 2s;
+    left: -20vh;
+}
+
+@keyframes introplanet{
+    0%{left:-100vh;}
+    100%{left:-20vh;}
+}
+
+.para{
+    float:right;
+    color: white;
+    position: relative;
+    animation-name: fade-in;
+    animation-duration: 1s;
+}
+
+@keyframes fade-in{
+    from{opacity:0%}
+    to{opacity:100%}
+}
+
+body{
+    overflow-x: hidden;
+    background-color: black;
+}
+
+hr{
+    border-width: 3px;
+    border-color: white;
+}
+  
+h1{
+    text-align: center;
+}
+
+p{
+    background-color: rgba(0, 0, 0, 0.436);
+    border-radius: 1vh;
+    width: 70vh;
+    float: right;
+    font-size: 3vh;
+    margin-right: 5vh;;
+}
+
+#title-header{
+    color: white;
+}
+
+table{
+    float: right;
+    margin-right: 5vh;
+    background-color:  rgba(0, 0, 0, 0.436);
+    border-radius: 1vh;
+    border-spacing: 1vh;
+}
+
+#chartimage{
+    width: 50vh;
+    float:right;
+    margin-right: 5vh;
+    margin-top: 3vh;
+    border-radius: 1vh;
+}
+
+a{
+    color:white;
+    text-decoration: none;
+}
+
+a:hover{
+    color:rgb(255, 217, 47);
+}

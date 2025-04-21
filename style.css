@@ -1,0 +1,266 @@
+.rubik-font {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    direction: rtl;
+}
+
+.solar-system-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 35vh;
+    transform: scale(0.65);
+}
+
+header {
+    border-radius: 1vh;
+    background-color: rgb(28, 22, 66);
+}
+
+.homebody {
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+@property --angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes revolve {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg;
+    }
+}
+
+.sun {
+    width: 100px;
+    height: 100px;
+}
+
+.planet {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: revolve 5s linear infinite;
+    --x: calc(cos(var(--angle)) * var(--amplitude));
+    --y: calc(sin(var(--angle)) * var(--amplitude));
+    translate: var(--x) var(--y);
+}
+
+.planet-1 {
+    --amplitude: 60px;
+    animation-duration: 3s;
+}
+
+.planet-2 {
+    --amplitude: 160px;
+    animation-duration: 7s;
+}
+
+.planet-3 {
+    --amplitude: 240px;
+    animation-duration: 12s;
+}
+
+.planet-4 {
+    --amplitude: 380px;
+    animation-duration: 23s;
+}
+
+.planet-5 {
+    --amplitude: 500px;
+    animation-duration: 142s;
+}
+
+.planet-6 {
+    --amplitude: 600px;
+    animation-duration: 354s;
+}
+
+.planet-7 {
+    --amplitude: 750px;
+    animation-duration: 1009s;
+}
+
+.planet-8 {
+    --amplitude: 850px;
+    animation-duration: 1979s;
+}
+
+hr {
+    border-width: 3px;
+    border-color: white;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+        color: rgb(255, 217, 47);
+}
+
+.sitemap {
+    margin-top: 50vh;
+    margin-bottom: 5vh;
+    text-align: center;
+}
+
+.elem {
+    padding: 0.4vh;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.registration-form {
+    margin: auto;
+    color: rgb(255, 255, 255);
+    background-color: rgb(90, 80, 159);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0px 80px rgba(155, 90, 219, 0.486);
+    width: 100%;
+    max-width: 800px;
+}
+
+input, select, button {
+    color: rgb(43, 26, 51);
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input[type="checkbox"] {
+        width: auto;
+        margin-right: 5px;
+}
+
+
+#title {
+    text-align: center;
+    color: #fffce0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+
+.field-group {
+    margin-bottom: 1.5rem;
+}
+
+.fieldstag {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.text-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.text-input:focus {
+        border-color: #1a73e8;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.radio-group label {
+        margin-right: 1rem;
+}
+
+select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+#title {
+    text-align: center;
+    color: #fffce0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+
+#submit {
+    background-color: #1a73e8;
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#submit:hover {
+        background-color: #1557b0;
+    }
+
+.error {
+    color: darkred;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.input-error {
+    border-color: #d93025;
+}
+
+#reset {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 5px;
+}
