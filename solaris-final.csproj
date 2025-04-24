@@ -107,6 +107,7 @@
     <Content Include="images\world-map-continents-oceans.png" />
     <Content Include="jupiter.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="login.js" />
     <Content Include="mars.aspx" />
     <Content Include="mercury.aspx" />
     <Content Include="neptune.aspx" />

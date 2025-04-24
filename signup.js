@@ -48,31 +48,6 @@ document.getElementById("answer1").addEventListener("input", checkquestion);
 document.getElementById("answer2").addEventListener("input", checkquestion);
 
 
-function updatevalue() {
-    firstName = document.getElementById("firstName").value;
-    checkinputfname();
-    lastName = document.getElementById("lastName").value;
-    checkinputlname();
-    birthDate = document.getElementById("birthDate").value;
-    checkinputbirthDate();
-    email = document.getElementById("email").value;
-    checkemail();
-    username = document.getElementById("username").value;
-    checkusername();
-    password = document.getElementById("password").value;
-    checkpassword();
-    phone = document.getElementById("phone").value;
-    checkphone();
-    //בדיקת מין
-    checkgender();
-    //שאלות שחזור
-    question1 = document.getElementById("question1").value;
-    question2 = document.getElementById("question2").value;
-    answer1 = document.getElementById("answer1").value;
-    answer2 = document.getElementById("answer2").value;
-    checkquestion();
-}
-
 //שם פרטי
 function checkinputfname() {
     firstName = document.getElementById("firstName").value;

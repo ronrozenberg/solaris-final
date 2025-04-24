@@ -11,7 +11,14 @@ namespace solaris_final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Application["globalusername"] == null)
+            {
+                usernamegreeting.InnerHtml = "שלום אורח";
+            } else
+            {
+                usernamegreeting.InnerHtml = "שלום " + Application["globalusername"];
+                System.Diagnostics.Debug.WriteLine("Button clicked!");
+            }
         }
     }
 }

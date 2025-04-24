@@ -13,12 +13,13 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body onload="getusername()">
     <form id="form1" runat="server">
         <header>
             <h1 class="rubik-font" href="home.aspx"><a href="home.aspx">סולאריס</a></h1>
             <a href="login.aspx" class="rubik-font">התחברות</a>
             <a href="signup.aspx" class="rubik-font">הרשמה</a>
+            <p id="usernamegreeting" runat="server"></p>
          <hr>
         </header>
         <div>
