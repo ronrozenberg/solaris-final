@@ -67,11 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin.aspx" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <Content Include="earth.aspx" />
+    <Content Include="error.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="home.aspx" />
     <Content Include="images\earth-big.jpg" />
     <Content Include="images\earth-huge.jpg" />
@@ -108,6 +111,7 @@
     <Content Include="jupiter.aspx" />
     <Content Include="login.aspx" />
     <Content Include="login.js" />
+    <Content Include="logout.aspx" />
     <Content Include="mars.aspx" />
     <Content Include="mercury.aspx" />
     <Content Include="neptune.aspx" />
@@ -115,19 +119,38 @@
     <Content Include="saturn.aspx" />
     <Content Include="signup.aspx" />
     <Content Include="signup.js" />
+    <Content Include="Stats.aspx" />
     <Content Include="style.css" />
     <Content Include="sun.aspx" />
     <Content Include="uranus.aspx" />
+    <Content Include="Users.aspx" />
     <Content Include="venus.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="earth.aspx.cs">
       <DependentUpon>earth.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="earth.aspx.designer.cs">
       <DependentUpon>earth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -149,6 +172,13 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="mars.aspx.cs">
       <DependentUpon>mars.aspx</DependentUpon>
@@ -200,6 +230,13 @@
     <Compile Include="signup.aspx.designer.cs">
       <DependentUpon>signup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Stats.aspx.cs">
+      <DependentUpon>Stats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats.aspx.designer.cs">
+      <DependentUpon>Stats.aspx</DependentUpon>
+    </Compile>
     <Compile Include="sun.aspx.cs">
       <DependentUpon>sun.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,6 +250,13 @@
     </Compile>
     <Compile Include="uranus.aspx.designer.cs">
       <DependentUpon>uranus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="venus.aspx.cs">
       <DependentUpon>venus.aspx</DependentUpon>

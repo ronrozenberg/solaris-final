@@ -9,9 +9,6 @@ namespace solaris_final
 {
     public partial class login : System.Web.UI.Page
     {
-        private const string UsernameKey = "globalusername";
-        private const string PasswordKey = "globalpassword";
-
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -21,9 +18,12 @@ namespace solaris_final
         {
             if (usernameError.InnerHtml == "" && passwordError.InnerHtml == "" && username.Value != "" && password.Value != "")
             {
-                Application[UsernameKey] = username.Value;
-                Application[PasswordKey] = password.Value;
+                Session["globalusername"] = username.Value;
+                Session["globalpassword"] = password.Value;
+                Session["login"] = true;
+                Response.Redirect("Home.aspx");
             }
+            else { Session["login"] = false; }
         }
     }
 }

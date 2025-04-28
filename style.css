@@ -112,17 +112,29 @@ h1 {
     text-align: center;
 }
 
+#logout {
+    color: red;
+    text-align: left;
+    display: block;
+    background: none;
+    border: none;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
 
 a {
     color: white;
     text-decoration: none;
+    margin-right: 10px;
 }
 
 #usernamegreeting {
     color: white;
     text-decoration: none;
     text-align: left;
-    margin-left:5px;
+    margin-left: 5px;
+    display:block;
 }
 
 a:hover {

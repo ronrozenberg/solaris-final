@@ -11,14 +11,20 @@ namespace solaris_final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Application["globalusername"] == null)
+            if (Session["globalusername"].ToString() != "Ron")
             {
-                usernamegreeting.InnerHtml = "שלום אורח";
-            } else
-            {
-                usernamegreeting.InnerHtml = "שלום " + Application["globalusername"];
-                System.Diagnostics.Debug.WriteLine("Button clicked!");
+                tohide1.Style.Add("display", "none");
+                tohide2.Style.Add("display", "none");
+                tohide3.Style.Add("display", "none");
+                tohide4.Style.Add("display", "none");
             }
+            if (Session["globalusername"].ToString() == "אורח")
+            {
+                logout.Style.Add("display", "none");
+            }
+            usernamegreeting.InnerHtml = "שלום " + Session["globalusername"];
+            System.Diagnostics.Debug.WriteLine("Button clicked!");
         }
+
     }
 }

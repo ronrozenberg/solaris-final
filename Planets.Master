@@ -15,11 +15,17 @@
 <body onload="getusername()">
     <form id="form1" runat="server">
         <header>
-            <h1 class="rubik-font">סולאריס</h1>
+            <h1 class="rubik-font" href="home.aspx"><a href="home.aspx">סולאריס</a></h1>
             <a href="login.aspx" class="rubik-font">התחברות</a>
+            <a class="elem">|</a>
             <a href="signup.aspx" class="rubik-font">הרשמה</a>
-            <p id="usernamegreeting"></p>
-         <hr>
+            <a class="elem" id="tohide1" runat="server">|</a>
+            <a href="Stats.aspx" id="tohide2" class="rubik-font tohide" runat="server">סטטיסטיקות</a>
+            <a class="elem tohide" id="tohide3" runat="server">|</a>
+            <a href="Admin.aspx" id="tohide4" class="rubik-font tohide" runat="server">משתמשים</a>
+            <a class="rubik-font" id="logout" runat="server" href="logout.aspx">התנתקות</a>
+            <h3 class="rubik-font" id="usernamegreeting" runat="server"></h3>
+            <hr>
         </header>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

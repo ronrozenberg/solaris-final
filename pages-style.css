@@ -7,19 +7,18 @@
     direction: rtl;
 }
 
+
 #pagetitle{
     font-size: 5vh;
     text-align: right;
     margin-right: 5vh;
 }
-header{
-    background-color: rgb(28, 22, 66);
+
+header {
     border-radius: 1vh;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    color:white;
-}  
+    text-align: right;
+    background-color: rgb(28, 22, 66);
+}
 
 .planetbig{
     position: absolute;
@@ -58,6 +57,25 @@ hr{
   
 h1{
     text-align: center;
+}
+#logout {
+    color: red;
+    text-align: left;
+    display: inline-block;
+    gap:75%;
+    background: none;
+    border: none;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
+
+#usernamegreeting {
+    color: white;
+    text-decoration: none;
+    text-align: left;
+    float: left;
+    margin-left: 5px;
 }
 
 p{
