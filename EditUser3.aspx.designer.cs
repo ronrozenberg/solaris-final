@@ -11,71 +11,80 @@ namespace solaris_final
 {
 
 
-    public partial class Admin
+    public partial class EditUser3
     {
 
         /// <summary>
-        /// btnFilter1 control.
+        /// userName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnFilter1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText userName;
 
         /// <summary>
-        /// Button1 control.
+        /// password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText password;
 
         /// <summary>
-        /// btnEdit control.
+        /// firstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnEdit;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText firstName;
 
         /// <summary>
-        /// btnAdd control.
+        /// lastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAdd;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText lastName;
 
         /// <summary>
-        /// btnAdmin control.
+        /// date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAdmin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl date;
 
         /// <summary>
-        /// btnUser control.
+        /// city control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnUser;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText city;
 
         /// <summary>
-        /// tableDiv control.
+        /// Admin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Admin;
+
+        /// <summary>
+        /// Update control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton Update;
 
         /// <summary>
         /// message control.
@@ -85,14 +94,5 @@ namespace solaris_final
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl message;
-
-        /// <summary>
-        /// message1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl message1;
     }
 }
