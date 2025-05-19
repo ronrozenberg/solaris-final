@@ -1,0 +1,1 @@
+﻿SELECT DISTINCT city FROM [dbo].[UserDatabase] WHERE city IS NOT NULL;
