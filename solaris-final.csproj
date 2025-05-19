@@ -16,10 +16,11 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44312</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -73,6 +74,7 @@
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <Content Include="earth.aspx" />
+    <Content Include="EditUser3.aspx" />
     <Content Include="error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
@@ -135,12 +137,21 @@
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
+    <Content Include="App_Code\Helper.cs" />
+    <Content Include="App_Code\User.cs" />
     <Compile Include="earth.aspx.cs">
       <DependentUpon>earth.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="earth.aspx.designer.cs">
       <DependentUpon>earth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditUser3.aspx.cs">
+      <DependentUpon>EditUser3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditUser3.aspx.designer.cs">
+      <DependentUpon>EditUser3.aspx</DependentUpon>
     </Compile>
     <Compile Include="error.aspx.cs">
       <DependentUpon>error.aspx</DependentUpon>
@@ -295,7 +306,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51176</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44312/</IISUrl>
+          <IISUrl>http://localhost:51176/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
