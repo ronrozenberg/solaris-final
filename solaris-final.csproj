@@ -73,6 +73,7 @@
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <Content Include="DeleteUpdate.aspx" />
     <Content Include="earth.aspx" />
     <Content Include="EditUser3.aspx" />
     <Content Include="error.aspx" />
@@ -118,6 +119,7 @@
     <Content Include="mercury.aspx" />
     <Content Include="neptune.aspx" />
     <Content Include="pages-style.css" />
+    <Content Include="RadioButton1.aspx" />
     <Content Include="saturn.aspx" />
     <Content Include="signup.aspx" />
     <Content Include="signup.js" />
@@ -126,6 +128,7 @@
     <Content Include="sun.aspx" />
     <Content Include="uranus.aspx" />
     <Content Include="Users.aspx" />
+    <Content Include="UsersTable7.aspx" />
     <Content Include="venus.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -139,6 +142,10 @@
     </Compile>
     <Content Include="App_Code\Helper.cs" />
     <Content Include="App_Code\User.cs" />
+    <Compile Include="DeleteUpdate.aspx.cs">
+      <DependentUpon>DeleteUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="earth.aspx.cs">
       <DependentUpon>earth.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -163,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HelperAndUsers.cs" />
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -227,6 +235,10 @@
     <Compile Include="Planets.Master.designer.cs">
       <DependentUpon>Planets.Master</DependentUpon>
     </Compile>
+    <Compile Include="RadioButton1.aspx.cs">
+      <DependentUpon>RadioButton1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="saturn.aspx.cs">
       <DependentUpon>saturn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -268,6 +280,10 @@
     </Compile>
     <Compile Include="Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsersTable7.aspx.cs">
+      <DependentUpon>UsersTable7.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="venus.aspx.cs">
       <DependentUpon>venus.aspx</DependentUpon>

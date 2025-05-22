@@ -10,38 +10,41 @@ using System.Data.SqlClient;
 namespace solaris_final
 {
 
- public class User
+   public class User
     {
-        public int userId;
-        public string userName;
+        public int Id;
+        public int phone;
+        public string username;
+        public string email;
         public string password;
-        public string firstName;
-        public string lastName;
-        public DateTime birthday;
+        public string fname;
+        public string lname;
+        public DateTime date;
         public string city;
-        public bool Admin;
+        public bool admin;
+        public bool gender;
         public User()
         {
-            userId = -1;
-            userName = "";
+            Id = -1;
+            username = "";
             password = "";
-            firstName = "";
-            lastName = "";
-            birthday = DateTime.Today;
+            fname = "";
+            lname = "";
+            date = DateTime.Today;
             city = "";
-            Admin = false;
+            admin = false;
 
         }
-        public User(int userId, string uName)
+        public User(int Id, string uName)
         {
-            this.userId = userId;
-            userName = uName;
+            this.Id = Id;
+            username = uName;
         }
     }
     public static class Helper
     {
         public const string DBName = "Database1.mdf";   //Name of the MSSQL Database.
-        public const string tblName = "tblUsers";      // Name of the user Table in the Database
+        public const string tblName = "UserDatabase";      // Name of the user Table in the Database
         public const string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\"
                                         + DBName + ";Integrated Security=True";   // The Data Base is in the App_Data = |DataDirectory|
 
@@ -100,9 +103,9 @@ namespace solaris_final
             return n;
         }
 
-        public static void Delete(int[] userIdToDelete)
-        // The Array "userIdToDelete" contain the id of the users to delete. 
-        // Delets all the users in the array "userIdToDelete".
+        public static void Delete(int[] IdToDelete)
+        // The Array "IdToDelete" contain the id of the users to delete. 
+        // Delets all the users in the array "IdToDelete".
         {
             // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
@@ -115,9 +118,9 @@ namespace solaris_final
             adapter.Fill(ds, tblName);
 
             // מחיקת שורות שנבחרו מתוך הדאטה סט
-            for (int i = 0; i < userIdToDelete.Length; i++)
+            for (int i = 0; i < IdToDelete.Length; i++)
             {
-                DataRow[] dr = ds.Tables[tblName].Select($"userId = {userIdToDelete[i]}");
+                DataRow[] dr = ds.Tables[tblName].Select($"Id = {IdToDelete[i]}");
                 dr[0].Delete();
             }
 
@@ -128,14 +131,14 @@ namespace solaris_final
         }
 
         public static void Update(User user)
-        // The Method recieve a user objects. Find the user in the DataBase acording to his userId and update all the other properties in DB.
+        // The Method recieve a user objects. Find the user in the DataBase acording to his Id and update all the other properties in DB.
         {
             // HttpRequest Request
             // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
             // בניית פקודת SQL
-            string SQLStr = "SELECT * FROM " + Helper.tblName + $" Where userid={user.userId}";
+            string SQLStr = "SELECT * FROM " + Helper.tblName + $" Where Id={user.Id}";
             SqlCommand cmd = new SqlCommand(SQLStr, con);
 
             //  טעינת הנתונים לתוך DataSet
@@ -145,11 +148,11 @@ namespace solaris_final
 
             // בניית השורה להוספה
             DataRow dr = ds.Tables[tblName].Rows[0];
-            dr["firstName"] = user.firstName;
-            dr["lastName"] = user.lastName;
-            dr["userName"] = user.userName;
+            dr["fname"] = user.fname;
+            dr["lname"] = user.lname;
+            dr["username"] = user.username;
             dr["password"] = user.password;
-            dr["birthday"] = user.birthday;
+            dr["date"] = user.date;
             dr["city"] = user.city;
 
             // עדכון הדאטה סט בבסיס הנתונים
@@ -180,11 +183,11 @@ namespace solaris_final
 
             // בניית השורה להוספה
             DataRow dr = ds.Tables[tblName].NewRow();
-            dr["firstName"] = user.firstName;
-            dr["lastName"] = user.lastName;
-            dr["userName"] = user.userName;
+            dr["fname"] = user.fname;
+            dr["lname"] = user.lname;
+            dr["username"] = user.username;
             dr["password"] = user.password;
-            dr["birthday"] = user.birthday;
+            dr["date"] = user.date;
             dr["city"] = user.city;
             ds.Tables[tblName].Rows.Add(dr);
 
@@ -194,18 +197,18 @@ namespace solaris_final
             adapter.Update(ds, tblName);
         }
 
-        public static User GetRow(string userName, string password)
-        // The Method check if there is a user with userName and Password. 
-        // If true the Method return a user with the first Name and Admin property.
-        // If not the Method return a user with first name "Visitor" and Admin = false
+        public static User GetRow(string username, string password)
+        // The Method check if there is a user with username and Password. 
+        // If true the Method return a user with the first Name and admin property.
+        // If not the Method return a user with first name "Visitor" and admin = false
 
         {
             // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
             // בניית פקודת SQL
-            string SQL = $"SELECT firstName, admin FROM " + tblName +
-                    $" WHERE userName='{userName}' AND password = '{password}'";
+            string SQL = $"SELECT fname, admin FROM " + tblName +
+                    $" WHERE username='{username}' AND password = '{password}'";
             SqlCommand cmd = new SqlCommand(SQL, con);
 
             // ביצוע השאילתא
@@ -217,13 +220,13 @@ namespace solaris_final
             if (reader.HasRows)
             {
                 reader.Read();
-                user.userName = reader.GetString(0);
-                user.Admin = reader.GetBoolean(1);
+                user.username = reader.GetString(0);
+                user.admin = reader.GetBoolean(1);
             }
             else
             {
-                user.userName = "Visitor";
-                user.Admin = false;
+                user.username = "Visitor";
+                user.admin = false;
             }
             reader.Close();
             con.Close();
@@ -269,7 +272,7 @@ namespace solaris_final
             foreach (DataRow row in dt.Rows)
             {
                 str += "<tr>";
-                str += "<td>" + CreateRadioBtn(row["userId"].ToString()) + "</td>";
+                str += "<td>" + CreateRadioBtn(row["Id"].ToString()) + "</td>";
                 foreach (DataColumn column in dt.Columns)
                 {
                     str += "<td>" + row[column] + "</td>";

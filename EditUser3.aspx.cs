@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 
-public partial class Pages_EditUser3 : System.Web.UI.Page
+public partial class solaris_final_EditUser3: System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,14 +16,14 @@ public partial class Pages_EditUser3 : System.Web.UI.Page
             DataRow dr = (DataRow)Session["userToUpdate"];
 
             //  מילוי השדות בטופס
-            firstName.Value = dr["firstName"].ToString();
-            lastName.Value = dr["lastName"].ToString();
-            userName.Value = dr["userName"].ToString();
-            lastName.Value = dr["lastName"].ToString();
+            fname.Value = dr["fname"].ToString();
+            lname.Value = dr["lname"].ToString();
+            username.Value = dr["username"].ToString();
+            lname.Value = dr["lname"].ToString();
             password.Value = dr["password"].ToString();
-            if (!dr.IsNull("birthday"))
+            if (!dr.IsNull("date"))
             {
-                date.Value = ((DateTime)(dr["birthday"])).ToString("yyy-MM-dd");
+                date.Value = ((DateTime)(dr["date"])).ToString("yyy-MM-dd");
             }
 
             city.Value = dr["city"].ToString();
@@ -51,11 +51,11 @@ public partial class Pages_EditUser3 : System.Web.UI.Page
 
         // בניית השורה להוספה
         DataRow dr = ds.Tables["users"].Rows[0];
-        ds.Tables["users"].Rows[0]["firstName"] = firstName.Value;
-        ds.Tables["users"].Rows[0]["lastName"] = lastName.Value;
-        dr["userName"] = userName.Value;
+        ds.Tables["users"].Rows[0]["fname"] = fname.Value;
+        ds.Tables["users"].Rows[0]["lname"] = lname.Value;
+        dr["username"] = username.Value;
         dr["password"] = password.Value;
-        dr["birthday"] = DateTime.Parse(date.Value);
+        dr["date"] = DateTime.Parse(date.Value);
         dr["city"] = city.Value;
 
         // עדכון הדאטה סט בבסיס הנתונים
@@ -63,6 +63,6 @@ public partial class Pages_EditUser3 : System.Web.UI.Page
         adapter.UpdateCommand = builder.GetUpdateCommand();
         adapter.Update(ds, "users");
 
-        Response.Redirect("http://localhost:59467/Pages/DeleteUpdate.aspx");
+        Response.Redirect("DeleteUpdate.aspx");
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="EditUser3.aspx.cs" Inherits="solaris_final.EditUser3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="EditUser3.aspx.cs" Inherits="solaris_final_EditUser3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -10,16 +10,16 @@
                 User Name:
             </td>
             <td>
-                <input type="text" name="userName" id="userName" runat="server"/>
+                <input type="text" name="username" id="username" runat="server">
             </td>
             <td>
-                <div id="userNameAlert" class="alert"></div>
+                <div id="usernameAlert" class="alert"></div>
             </td>
         </tr>
         <tr>
             <td>Password</td>
             <td>
-                <input type="text" name="password" id="password" runat="server"/>
+                <input type="text" name="password" id="password" runat="server">
             </td>
             <td>
                 <div id="passwordAlert" class="alert"></div>
@@ -28,7 +28,7 @@
         <tr>
             <td>Confirm Password</td>
             <td>
-                <input type="text" name="confirmPassword" id="confirmPassword"/>
+                <input type="text" name="confirmPassword" id="confirmPassword">
             </td>
             <td>
                 <div id="passwordConfirmAlert" class="alert"></div>
@@ -39,7 +39,7 @@
                 first Name:
             </td>
             <td>
-                <input type="text" name="firstName" id="firstName" runat="server"/>
+                <input type="text" name="fname" id="fname" runat="server">
             </td>
             <td>
                 <div></div>
@@ -50,7 +50,7 @@
                 Last Name:
             </td>
             <td>
-                <input type="text" name="lastName" id="lastName" runat="server"/>
+                <input type="text" name="lname" id="lname" runat="server">
             </td>
             <td>
                 <div></div>
@@ -59,7 +59,7 @@
         <tr>
             <td>Birth Date</td>
             <td>
-                <input type="date" name="date" id="date" runat="server" />
+                <input type="date" name="date" id="date" runat="server">
             </td>
             <td></td>
         </tr>
@@ -68,7 +68,7 @@
                 City:
             </td>
             <td>
-                <input type="text" name="city" id="city" runat="server"/>
+                <input type="text" name="city" id="city" runat="server">
             </td>
             <td>
                 <div></div>
@@ -76,10 +76,10 @@
         </tr>
         <tr>
             <td>
-                Admin:
+                admin:
             </td>
             <td>
-                <input type="checkbox" name="Admin" id="Admin" runat="server"/>
+                <input type="checkbox" name="admin" id="admin" runat="server">
             </td>
             <td>
                 <div></div>
@@ -88,7 +88,7 @@
         <tr>
             <td>E-Mail</td>
             <td>
-                <input type="text" name="email" id="email" />
+                <input type="text" name="email" id="email">
             </td>
             <td >
                 <div id="emailAlert" class="alert"></div>
