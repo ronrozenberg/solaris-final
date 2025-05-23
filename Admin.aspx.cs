@@ -12,11 +12,12 @@ namespace solaris_final
    
     public partial class Admin : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((string)Session["globalusername"] != "Ron")
+            if (!(bool)Session["admin"])
             {
-                Response.Redirect("error.aspx");
+                //Response.Redirect("home.aspx");
             }
 
             if (!IsPostBack)
@@ -24,7 +25,7 @@ namespace solaris_final
                 string SQLStr = "SELECT * FROM tblUsers";
                 DataSet ds = Helper.RetrieveTable(SQLStr);
                 DataTable dt = ds.Tables[0];
-                //dt = SortTable(dt, "firstName", "ASC");
+                //dt = SortTable(dt, "fname", "ASC");
                 string table = Helper.BuildUsersTable(dt);
                 tableDiv.InnerHtml = table;
             }
@@ -36,11 +37,11 @@ namespace solaris_final
             {
                 return "SELECT * FROM tblUsers";
             }
-            //string SQLStr = $"SELECT * FROM tblUsers WHERE firstName='{str}'";
-            //string SQLStr = $"SELECT * FROM tblUsers WHERE firstName LIKE '%{str}%'";
+            //string SQLStr = $"SELECT * FROM tblUsers WHERE fname='{str}'";
+            //string SQLStr = $"SELECT * FROM tblUsers WHERE fname LIKE '%{str}%'";
             string SQLStr = $"SELECT * FROM tblUsers WHERE" +
-                $" firstName LIKE '%{str}%' OR" +
-                $" lastName LIKE '%{str}%' ";
+                $" fname LIKE '%{str}%' OR" +
+                $" lname LIKE '%{str}%' ";
             return SQLStr;
         }
 
@@ -60,7 +61,7 @@ namespace solaris_final
 
         public void Delete(object sender, EventArgs e)
         {
-            int userId;
+            int Id;
             // בניית מערך של משתמשים למחיקה
             List<int> usersList = new List<int>();
 
@@ -68,13 +69,13 @@ namespace solaris_final
             {
                 if (Request.Form.AllKeys[i].Contains("chk"))
                 {
-                    userId = int.Parse(Request.Form.AllKeys[i].Remove(0, 3));
-                    usersList.Add(userId);
+                    Id = int.Parse(Request.Form.AllKeys[i].Remove(0, 3));
+                    usersList.Add(Id);
                 }
             }
-            int[] userIdToDelete = usersList.ToArray();
+            int[] IdToDelete = usersList.ToArray();
 
-            Helper.Delete(userIdToDelete);
+            Helper.Delete(IdToDelete);
 
             // הדפסת הטבלה המעודכנת
             DataSet ds = Helper.RetrieveTable(BuildSQLStr(""));
@@ -89,7 +90,7 @@ namespace solaris_final
                 if (Request.Form.AllKeys[i].Contains("chk"))
                 {
                     Session["userToUpdate"] = int.Parse(Request.Form.AllKeys[i].Remove(0, 3));
-                    Response.Redirect("http://localhost:59467/Pages/EditUser.aspx");
+                    Response.Redirect("EditUser3.aspx");
 
                 }
 
@@ -99,20 +100,20 @@ namespace solaris_final
 
         public void Add(object sender, EventArgs e)
         {
-            Response.Redirect("http://localhost:59467/Pages/signup.aspx");
+            Response.Redirect("signup.aspx");
         }
 
-        public void ChangeToAdmin(object sender, EventArgs e)
+        public void ChangeToadmin(object sender, EventArgs e)
         {
-            ChangeAdmin("Admin", "True");
+            Changeadmin("admin", "True");
         }
 
         public void ChangeToUser(object sender, EventArgs e)
         {
-            ChangeAdmin("Admin", "False");
+            Changeadmin("admin", "False");
         }
 
-        public void ChangeAdmin(string column, string Value)
+        public void Changeadmin(string column, string Value)
         {
             int counter = 0;
             // בניית שאילתא
@@ -125,8 +126,8 @@ namespace solaris_final
                 {
                     if (counter > 0)
                         SQL += "OR ";
-                    int userId = int.Parse(Request.Form.AllKeys[i].Remove(0, 3));
-                    SQL += $" userId = {userId} ";
+                    int Id = int.Parse(Request.Form.AllKeys[i].Remove(0, 3));
+                    SQL += $" Id = {Id} ";
                     counter++;
                 }
             }
@@ -146,7 +147,5 @@ namespace solaris_final
             string table = Helper.BuildUsersTable(dt);
             tableDiv.InnerHtml = table;
         }
-
-
     }
 }

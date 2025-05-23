@@ -39,7 +39,7 @@
         <div class="field-group">
             <h2 class="fieldstag">שם משתמש:</h2>
             <input type="text" class="text-input" id="username">
-            <div class="error" id="usernameError"></div>
+            <div class="error" id="usernameError" runat="server"></div>
         </div>
 
         <div class="field-group">

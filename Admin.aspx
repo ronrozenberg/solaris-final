@@ -28,37 +28,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>דף משתמשים</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>מספר</th>
-                <th>שם משתמש</th>
-                <th>סיסמה</th>
-                <th>אדמין?</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td><%Response.Write(Session["username1"]); %></td>
-                <td><%Response.Write(Session["password1"]);%></td>
-                <td><%Response.Write(Session["isadmin1"]);%></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><%Response.Write(Session["username2"]); %></td>
-                <td><%Response.Write(Session["password2"]);%></td>
-                <td><%Response.Write(Session["isadmin2"]);%></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><%Response.Write(Session["username3"]); %></td>
-                <td><%Response.Write(Session["password3"]);%></td>
-                <td><%Response.Write(Session["isadmin3"]);%></td>
-            </tr>
-        </tbody>
-    </table>
+    
     <br />
+    <div>
         Enter Text to search name:
         <input type="text" name="filter" id="filter" />
         <br /> <br /> 
@@ -74,7 +46,6 @@
         &nbsp &nbsp &nbsp &nbsp
         <input type="button" value="Change to User" name="btnUser" id="btnUser" runat="server"  onserverclick="ChangeToUser"/> 
         <br /> <br />
-            
     </div>
     <div runat="server" id="tableDiv">
 

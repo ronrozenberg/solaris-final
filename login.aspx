@@ -10,7 +10,7 @@
     <form>
         <div class="field-group">
             <h2 class="fieldstag">שם משתמש:</h2>
-            <input type="text" class="text-input" name="username" id="username" runat="server">
+            <input type="text" class="text-input" name="userName" id="userName" runat="server">
             <div class="error" id="usernameError" runat="server"></div>
             <style>.error {color: gold;}</style>
         </div>

@@ -119,7 +119,6 @@
     <Content Include="mercury.aspx" />
     <Content Include="neptune.aspx" />
     <Content Include="pages-style.css" />
-    <Content Include="RadioButton1.aspx" />
     <Content Include="saturn.aspx" />
     <Content Include="signup.aspx" />
     <Content Include="signup.js" />
@@ -128,7 +127,6 @@
     <Content Include="sun.aspx" />
     <Content Include="uranus.aspx" />
     <Content Include="Users.aspx" />
-    <Content Include="UsersTable7.aspx" />
     <Content Include="venus.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -145,6 +143,9 @@
     <Compile Include="DeleteUpdate.aspx.cs">
       <DependentUpon>DeleteUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteUpdate.aspx.designer.cs">
+      <DependentUpon>DeleteUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="earth.aspx.cs">
       <DependentUpon>earth.aspx</DependentUpon>
@@ -235,10 +236,6 @@
     <Compile Include="Planets.Master.designer.cs">
       <DependentUpon>Planets.Master</DependentUpon>
     </Compile>
-    <Compile Include="RadioButton1.aspx.cs">
-      <DependentUpon>RadioButton1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="saturn.aspx.cs">
       <DependentUpon>saturn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -280,10 +277,6 @@
     </Compile>
     <Compile Include="Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UsersTable7.aspx.cs">
-      <DependentUpon>UsersTable7.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="venus.aspx.cs">
       <DependentUpon>venus.aspx</DependentUpon>
