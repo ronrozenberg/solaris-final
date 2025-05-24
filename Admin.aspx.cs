@@ -33,7 +33,7 @@ namespace solaris_final
             {
                 reader.Close();
                 con.Close();
-                Response.Redirect("home.aspx");
+                Response.Redirect("error.aspx");
             }
 
             if (!IsPostBack)
@@ -53,8 +53,8 @@ namespace solaris_final
             {
                 return "SELECT * FROM UserDatabase";
             }
-            //string SQLStr = $"SELECT * FROM tblUsers WHERE fname='{str}'";
-            //string SQLStr = $"SELECT * FROM tblUsers WHERE fname LIKE '%{str}%'";
+            //string SQLStr = $"SELECT * FROM UserDatabase WHERE fname='{str}'";
+            //string SQLStr = $"SELECT * FROM UserDatabase WHERE fname LIKE '%{str}%'";
             string SQLStr = $"SELECT * FROM UserDatabase WHERE" +
                 $" fname LIKE '%{str}%' OR" +
                 $" lname LIKE '%{str}%' ";

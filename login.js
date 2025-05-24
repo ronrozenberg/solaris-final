@@ -1,5 +1,4 @@
-﻿
-document.getElementById("userName").addEventListener("click", checkusername);
+﻿document.getElementById("userName").addEventListener("click", checkusername);
 document.getElementById("userName").addEventListener("input", checkusername);
 document.getElementById("password").addEventListener("click", checkpassword);
 document.getElementById("password").addEventListener("input", checkpassword);

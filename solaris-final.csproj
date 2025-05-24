@@ -114,11 +114,13 @@
     <Content Include="jupiter.aspx" />
     <Content Include="login.aspx" />
     <Content Include="login.js" />
+    <Content Include="loginerror.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="mars.aspx" />
     <Content Include="mercury.aspx" />
     <Content Include="neptune.aspx" />
     <Content Include="pages-style.css" />
+    <Content Include="recovery.aspx" />
     <Content Include="saturn.aspx" />
     <Content Include="signup.aspx" />
     <Content Include="signup.js" />
@@ -193,6 +195,13 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="loginerror.aspx.cs">
+      <DependentUpon>loginerror.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="loginerror.aspx.designer.cs">
+      <DependentUpon>loginerror.aspx</DependentUpon>
+    </Compile>
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -235,6 +244,13 @@
     </Compile>
     <Compile Include="Planets.Master.designer.cs">
       <DependentUpon>Planets.Master</DependentUpon>
+    </Compile>
+    <Compile Include="recovery.aspx.cs">
+      <DependentUpon>recovery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="recovery.aspx.designer.cs">
+      <DependentUpon>recovery.aspx</DependentUpon>
     </Compile>
     <Compile Include="saturn.aspx.cs">
       <DependentUpon>saturn.aspx</DependentUpon>

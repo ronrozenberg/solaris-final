@@ -6,62 +6,59 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using solaris_final;
 
-public partial class solaris_final_EditUser3: System.Web.UI.Page
+public partial class solaris_final_EditUser3 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            DataRow dr = (DataRow)Session["userToUpdate"];
-
-            //  מילוי השדות בטופס
-            fname.Value = dr["fname"].ToString();
-            lname.Value = dr["lname"].ToString();
-            username.Value = dr["username"].ToString();
-            lname.Value = dr["lname"].ToString();
-            password.Value = dr["password"].ToString();
-            if (!dr.IsNull("date"))
+            if (Session["userToUpdate"] == null)
             {
-                date.Value = ((DateTime)(dr["date"])).ToString("yyy-MM-dd");
+                Response.Redirect("error.aspx");
+                return;
             }
 
-            city.Value = dr["city"].ToString();
+            int Id = (int)Session["userToUpdate"];
+            string SQLStr = $"SELECT * FROM UserDatabase WHERE Id={Id}";
+            var ds = Helper.RetrieveTable(SQLStr);
+            var dt = ds.Tables[Helper.tblName];
+            if (dt.Rows.Count > 0)
+            {
+                var dr = dt.Rows[0];
+                fname.Value = dr["fname"].ToString();
+                lname.Value = dr["lname"].ToString();
+                username.Value = dr["username"].ToString();
+                password.Value = dr["password"].ToString();
+                if (dr["date"] != DBNull.Value)
+                {
+                    date.Value = ((DateTime)dr["date"]).ToString("yyyy-MM-dd");
+                }
+                city.Value = dr["city"].ToString();
+            }
         }
-
     }
 
     public void UpdateUser(object sender, EventArgs e)
     {
+        if (Session["userToUpdate"] == null)
+        {
+            Response.Redirect("error.aspx");
+            return;
+        }
 
-        // התחברות למסד הנתונים
-        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gilad\source\repos\DBWeb\DBWeb\App_Data\Database.mdf;Integrated Security=True";
-        SqlConnection con = new SqlConnection(connectionString);
+        int Id = (int)Session["userToUpdate"];
+        string SQLStr = $"UPDATE UserDatabase SET " +
+                        $"fname=N'{fname.Value}', " +
+                        $"lname=N'{lname.Value}', " +
+                        $"username=N'{username.Value}', " +
+                        $"password=N'{password.Value}', " +
+                        $"date='{date.Value}', " +
+                        $"city=N'{city.Value}' " +
+                        $"WHERE Id={Id}";
 
-        // בניית פקודת SQL
-        DataRow row = (DataRow)Session["userToUpdate"];
-        int userId = (int)row["userId"];
-        string SQLStr = $"SELECT * FROM tblUsers Where userid={userId}";
-        SqlCommand cmd = new SqlCommand(SQLStr, con);
-
-        //  טעינת הנתונים לתוך DataSet
-        DataSet ds = new DataSet();
-        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-        adapter.Fill(ds, "users");
-
-        // בניית השורה להוספה
-        DataRow dr = ds.Tables["users"].Rows[0];
-        ds.Tables["users"].Rows[0]["fname"] = fname.Value;
-        ds.Tables["users"].Rows[0]["lname"] = lname.Value;
-        dr["username"] = username.Value;
-        dr["password"] = password.Value;
-        dr["date"] = DateTime.Parse(date.Value);
-        dr["city"] = city.Value;
-
-        // עדכון הדאטה סט בבסיס הנתונים
-        SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
-        adapter.UpdateCommand = builder.GetUpdateCommand();
-        adapter.Update(ds, "users");
+        Helper.ExecuteNonQuery(SQLStr);
 
         Response.Redirect("DeleteUpdate.aspx");
     }

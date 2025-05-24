@@ -24,6 +24,14 @@
         th {
             font-weight: bold;
         }
+        h2 {
+                text-align: center;
+        }
+        #filter{
+            width:80%;
+            margin-left:10%;
+            margin-right:10%;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -31,21 +39,23 @@
     
     <br />
     <div>
-        Enter Text to search name:
+        <h2>חיפוש טקסט</h2>
         <input type="text" name="filter" id="filter" />
         <br /> <br /> 
-        <input type="button" value="Filter" name="btnFilter1" id="btnFilter1" runat="server" onserverclick="Click_Filter1" />
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-        <input type="button" value="Delete" name="btnDelete" id="Button1" runat="server" onserverclick="Delete" />
+        <div class="adminbuttons">
+        <input type="button" class="sqlbuttons" value="Filter" name="btnFilter1" id="btnFilter1" runat="server" onserverclick="Click_Filter1" />
         &nbsp &nbsp &nbsp &nbsp
-        <input type="button" value="Edit" name="btnEdit" id="btnEdit" runat="server"  onserverclick="Edit"/> 
+        <input type="button" class="sqlbuttons" value="Delete" name="btnDelete" id="Button1" runat="server" onserverclick="Delete" />
         &nbsp &nbsp &nbsp &nbsp
-        <input type="button" value="Add" name="btnAdd" id="btnAdd" runat="server"  onserverclick="Add"/> 
+        <input type="button" class="sqlbuttons" value="Edit" name="btnEdit" id="btnEdit" runat="server"  onserverclick="Edit"/> 
         &nbsp &nbsp &nbsp &nbsp
-        <input type="button" value="Change to Admin" name="btnAdmin" id="btnAdmin" runat="server"  onserverclick="ChangeToadmin"/> 
+        <input type="button" class="sqlbuttons" value="Add" name="btnAdd" id="btnAdd" runat="server"  onserverclick="Add"/> 
         &nbsp &nbsp &nbsp &nbsp
-        <input type="button" value="Change to User" name="btnUser" id="btnUser" runat="server"  onserverclick="ChangeToUser"/> 
+        <input type="button" class="sqlbuttons" value="Change to Admin" name="btnAdmin" id="btnAdmin" runat="server"  onserverclick="ChangeToadmin"/> 
+        &nbsp &nbsp &nbsp &nbsp
+        <input type="button" class="sqlbuttons" value="Change to User" name="btnUser" id="btnUser" runat="server"  onserverclick="ChangeToUser"/> 
         <br /> <br />
+        </div>
     </div>
     <div runat="server" id="tableDiv">
 

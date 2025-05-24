@@ -22,6 +22,7 @@ namespace solaris_final
                     System.Diagnostics.Debug.WriteLine("test 2");
                     if (user.username == "אורח")
                     {
+                        Response.Redirect("loginerror.aspx");
                         Session["login"] = false;
                     }
                     else
@@ -33,7 +34,7 @@ namespace solaris_final
                         Response.Redirect("home.aspx");
                     }
                 }
-                else { Session["login"] = false; }
+                else { Session["login"] = false; Response.Redirect("loginerror.aspx"); }
             }
         }
 

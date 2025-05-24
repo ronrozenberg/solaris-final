@@ -23,5 +23,7 @@
 
         <button type="submit" runat="server" id="submit">כניסה</button>
     </form>
+    <a href="recovery.aspx">שחזור סיסמה</a>
     </body>
+    <script src="login.js"></script>
 </asp:Content>

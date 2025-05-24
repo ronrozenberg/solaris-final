@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -13,49 +12,24 @@ namespace solaris_final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(bool)Session["Admin"])
+            // Check admin rights using Helper.RetrieveTable
+            string SQL = $"SELECT username, admin FROM {Helper.tblName} WHERE username='{Session["globalusername"]}' AND admin=1";
+            DataSet adminDs = Helper.RetrieveTable(SQL);
+            DataTable adminDt = adminDs.Tables[Helper.tblName];
+            if (adminDt.Rows.Count == 0)
             {
-                //Response.Redirect("http://localhost:59467/Pages/Main.aspx");
+                Response.Redirect("error.aspx");
+                return;
             }
 
             if (!IsPostBack)
             {
-                string SQLStr = "SELECT * FROM tblUsers";
-                //DataSet ds = RetrieveUsersTable(SQLStr);
-                Session["ds"] = RetrieveUsersTable(SQLStr);
-                DataTable dt = ((DataSet)Session["ds"]).Tables["users"];
+                string SQLStr = $"SELECT * FROM {Helper.tblName}";
+                Session["ds"] = Helper.RetrieveTable(SQLStr);
+                DataTable dt = ((DataSet)Session["ds"]).Tables[Helper.tblName];
                 string table = BuildUsersTable(dt);
                 tableDiv.InnerHtml = table;
             }
-        }
-
-        public DataSet RetrieveUsersTable(string SQLStr)
-        {
-            // connect to DataBase
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";
-
-            SqlConnection con = new SqlConnection(connectionString);
-
-            // Build SQL Query
-            SqlCommand cmd = new SqlCommand(SQLStr, con);
-
-            //SqlCommand cmd = new SqlCommand();
-            //cmd.CommandText = SQLStr;
-            //cmd.Connection = con;
-
-
-            // Build DataAdapter
-            SqlDataAdapter ad = new SqlDataAdapter(cmd);
-
-            // Build DataSet to store the data
-            DataSet ds = new DataSet();
-
-            // Get Data form DataBase into the DataSet
-            //con.Open();
-            ad.Fill(ds, "users");
-            //con.Close();
-
-            return ds;
         }
 
         public string BuildUsersTable(DataTable dt)
@@ -82,16 +56,13 @@ namespace solaris_final
             return str;
         }
 
-
         public string BuildSQLStr(string str)
         {
             if (str.Length == 0)
             {
-                return "SELECT * FROM tblUsers";
+                return $"SELECT * FROM {Helper.tblName}";
             }
-            //string SQLStr = $"SELECT * FROM tblUsers WHERE firstName='{str}'";
-            //string SQLStr = $"SELECT * FROM tblUsers WHERE firstName LIKE '%{str}%'";
-            string SQLStr = $"SELECT * FROM tblUsers WHERE" +
+            string SQLStr = $"SELECT * FROM {Helper.tblName} WHERE" +
                 $" firstName LIKE '%{str}%' OR" +
                 $" lastName LIKE '%{str}%' ";
             return SQLStr;
@@ -110,7 +81,7 @@ namespace solaris_final
             }
 
             DataSet ds = (DataSet)Session["ds"];
-            DataTable dt = ds.Tables["users"];
+            DataTable dt = ds.Tables[Helper.tblName];
             DataRow[] dr = dt.Select(expression);
             dt = dr.CopyToDataTable();
             string table = BuildUsersTable(dt);
@@ -122,11 +93,10 @@ namespace solaris_final
             if (delete.Value == "")
                 return;
             // update DataSet
-            int userId = int.Parse(delete.Value);
-            //string expression = $"userId = {userId}";
+            int Id = int.Parse(delete.Value);
             DataSet ds = (DataSet)Session["ds"];
-            DataTable dt = ds.Tables["users"];
-            DataRow[] dr = dt.Select($"userId = {userId}");
+            DataTable dt = ds.Tables[Helper.tblName];
+            DataRow[] dr = dt.Select($"Id = {Id}");
             if (dr.Length > 0)
             {
                 dr[0].Delete();
@@ -137,16 +107,13 @@ namespace solaris_final
                 return;
             }
 
-
             // Update DataBase with the updated dataSet
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";
-            SqlConnection con = new SqlConnection(connectionString);
-            string SQLStr = "SELECT * FROM tblUsers";
-            SqlCommand cmd = new SqlCommand(SQLStr, con);
-            SqlDataAdapter ad = new SqlDataAdapter(cmd);
-            SqlCommandBuilder builder = new SqlCommandBuilder(ad);
-            //ad.UpdateCommand = builder.GetDeleteCommand();
-            ad.Update(ds, "users");
+            string SQLStr = $"SELECT * FROM {Helper.tblName}";
+            var con = new System.Data.SqlClient.SqlConnection(Helper.conString);
+            var cmd = new System.Data.SqlClient.SqlCommand(SQLStr, con);
+            var ad = new System.Data.SqlClient.SqlDataAdapter(cmd);
+            var builder = new System.Data.SqlClient.SqlCommandBuilder(ad);
+            ad.Update(ds, Helper.tblName);
 
             // הדפסת הטבלה המעודכנת
             string table = BuildUsersTable(dt);
@@ -158,19 +125,19 @@ namespace solaris_final
             if (edit.Value == "")
                 return;
             // update DataSet
-            int userId = int.Parse(edit.Value);
-            string expression = $"userId = {userId}";
+            int Id = int.Parse(edit.Value);
+            string expression = $"Id = {Id}";
             DataSet ds = (DataSet)Session["ds"];
-            DataTable dt = ds.Tables["users"];
+            DataTable dt = ds.Tables[Helper.tblName];
             DataRow[] dr = dt.Select(expression);
             DataRow row = dr[0];
             Session["userToUpdate"] = row;
-            Response.Redirect("http://localhost:59467/Pages/EditUser3.aspx");
+            Response.Redirect("EditUser3.aspx");
         }
 
         public void Add(object sender, EventArgs e)
         {
-            Response.Redirect("http://localhost:59467/Pages/Register.aspx");
+            Response.Redirect("signup.aspx");
         }
 
         public void ChangeAdmin(object sender, EventArgs e)
@@ -178,10 +145,10 @@ namespace solaris_final
             if (change.Value == "")
                 return;
             // update DataSet
-            int userId = int.Parse(change.Value);
-            string expression = $"userId = {userId}";
+            int Id = int.Parse(change.Value);
+            string expression = $"Id = {Id}";
             DataSet ds = (DataSet)Session["ds"];
-            DataTable dt = ds.Tables["users"];
+            DataTable dt = ds.Tables[Helper.tblName];
             DataRow[] dr = dt.Select(expression);
             DataRow row = dr[0];
             if ((bool)row["admin"])
@@ -194,14 +161,12 @@ namespace solaris_final
             }
 
             // Update DataBase with the updated dataSet
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";
-            SqlConnection con = new SqlConnection(connectionString);
-            string SQLStr = "SELECT * FROM tblUsers";
-            SqlCommand cmd = new SqlCommand(SQLStr, con);
-            SqlDataAdapter ad = new SqlDataAdapter(cmd);
-            SqlCommandBuilder builder = new SqlCommandBuilder(ad);
-            //ad.UpdateCommand = builder.GetUpdateCommand();
-            ad.Update(ds, "users");
+            string SQLStr = $"SELECT * FROM {Helper.tblName}";
+            var con = new System.Data.SqlClient.SqlConnection(Helper.conString);
+            var cmd = new System.Data.SqlClient.SqlCommand(SQLStr, con);
+            var ad = new System.Data.SqlClient.SqlDataAdapter(cmd);
+            var builder = new System.Data.SqlClient.SqlCommandBuilder(ad);
+            ad.Update(ds, Helper.tblName);
 
             // הדפסת הטבלה המעודכנת
             string table = BuildUsersTable(dt);
