@@ -19,9 +19,8 @@ namespace solaris_final
             SqlConnection con = new SqlConnection(Helper.conString);
 
             // בניית פקודת SQL
-            //check if True or true
             string SQL = $"SELECT username, admin FROM " + Helper.tblName +
-                    $" WHERE username='{Session["globalusername"]}' AND admin==True";
+                    $" WHERE username='{Session["globalusername"]}' AND admin=1";
             SqlCommand cmd = new SqlCommand(SQL, con);
 
             // ביצוע השאילתא

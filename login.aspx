@@ -24,5 +24,4 @@
         <button type="submit" runat="server" id="submit">כניסה</button>
     </form>
     </body>
-<script src="login.js"></script>
 </asp:Content>

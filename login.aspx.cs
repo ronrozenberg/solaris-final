@@ -16,7 +16,7 @@ namespace solaris_final
             if (IsPostBack)
             {
                 System.Diagnostics.Debug.WriteLine("test ");
-                if (Request.Form["usernameError"] == "" && Request.Form["passwordError"] == "" && Request.Form["userName"] != "" && Request.Form["password"] != "")
+                if (Request.Form["userName"] != "" && Request.Form["password"] != "")
                 {
                     User user = GetRow(Request.Form["userName"], Request.Form["password"]);
                     System.Diagnostics.Debug.WriteLine("test 2");
@@ -56,11 +56,11 @@ namespace solaris_final
             if (reader.HasRows)
             {
                 reader.Read();
-                userName = reader.GetString(0);
+                user.username = reader.GetString(0);
             }
             else
             {
-                userName = "אורח";
+                user.username = "אורח";
             }
             reader.Close();
             con.Close();
