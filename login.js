@@ -1,8 +1,8 @@
 ﻿
-document.getElementById("ContentPlaceHolder1_username").addEventListener("click", checkusername);
-document.getElementById("ContentPlaceHolder1_username").addEventListener("input", checkusername);
-document.getElementById("ContentPlaceHolder1_password").addEventListener("click", checkpassword);
-document.getElementById("ContentPlaceHolder1_password").addEventListener("input", checkpassword);
+document.getElementById("userName").addEventListener("click", checkusername);
+document.getElementById("userName").addEventListener("input", checkusername);
+document.getElementById("password").addEventListener("click", checkpassword);
+document.getElementById("password").addEventListener("input", checkpassword);
 //בודק אם מתחיל באות גדולה, ומכיל איזשהי אות אנגלית/מספר/תו מיוחד
 var usernamecheck = /^[A-Z][!-~][^ ]*$/;
 //בודק אם מכיל אות גדולה, מספר ותו מיוחד, האם אות חוקית והאם בין 6-12 תווים ואין 3 אותיות חוזרות
@@ -17,18 +17,18 @@ function displayError(error, id) {
 
 //שם משתמש
 function checkusername() {
-    var username = document.getElementById("ContentPlaceHolder1_username").value;
+    var username = document.getElementById("userName").value;
     if (usernamecheck.test(username) == true) {
         console.log(usernamecheck.test(username));
-        displayError("", "ContentPlaceHolder1_username");
-    } else displayError("על שם המשתמש להתחיל באות אנגלית גדולה, להיות לפחות 2 תווים ולהכיל אותיות אנגליות, סימנים ומספרים בלבד ללא רווחים.", "ContentPlaceHolder1_username");
+        displayError("", "userName");
+    } else displayError("על שם המשתמש להתחיל באות אנגלית גדולה, להיות לפחות 2 תווים ולהכיל אותיות אנגליות, סימנים ומספרים בלבד ללא רווחים.", "userName");
 }
 
 //סיסמה
 function checkpassword() {
-    password = document.getElementById("ContentPlaceHolder1_password").value;
+    password = document.getElementById("password").value;
     if (passwordcheck.test(password) == true) {
         console.log(passwordcheck.test(password));
-        displayError("", "ContentPlaceHolder1_password");
-    } else displayError(" על הסיסמה להיות בין 6-12 תווים, להכיל אותיות אנגליות/מספרים/מיוחדים, אות גודלה וחובה אחד מכל אחד לפחות ולא להכיל את אותה אות 3 פעמים", "ContentPlaceHolder1_password");
+        displayError("", "password");
+    } else displayError(" על הסיסמה להיות בין 6-12 תווים, להכיל אותיות אנגליות/מספרים/מיוחדים, אות גודלה וחובה אחד מכל אחד לפחות ולא להכיל את אותה אות 3 פעמים", "password");
 }

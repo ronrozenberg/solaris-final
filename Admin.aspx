@@ -42,7 +42,7 @@
         &nbsp &nbsp &nbsp &nbsp
         <input type="button" value="Add" name="btnAdd" id="btnAdd" runat="server"  onserverclick="Add"/> 
         &nbsp &nbsp &nbsp &nbsp
-        <input type="button" value="Change to Admin" name="btnAdmin" id="btnAdmin" runat="server"  onserverclick="ChangeToAdmin"/> 
+        <input type="button" value="Change to Admin" name="btnAdmin" id="btnAdmin" runat="server"  onserverclick="ChangeToadmin"/> 
         &nbsp &nbsp &nbsp &nbsp
         <input type="button" value="Change to User" name="btnUser" id="btnUser" runat="server"  onserverclick="ChangeToUser"/> 
         <br /> <br />

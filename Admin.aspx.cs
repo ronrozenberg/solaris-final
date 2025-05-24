@@ -15,14 +15,31 @@ namespace solaris_final
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(bool)Session["admin"])
+            // התחברות למסד הנתונים
+            SqlConnection con = new SqlConnection(Helper.conString);
+
+            // בניית פקודת SQL
+            //check if True or true
+            string SQL = $"SELECT username, admin FROM " + Helper.tblName +
+                    $" WHERE username='{Session["globalusername"]}' AND admin==True";
+            SqlCommand cmd = new SqlCommand(SQL, con);
+
+            // ביצוע השאילתא
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            // שימוש בנתונים שהתקבלו
+            User user = new User();
+            if (!reader.HasRows)
             {
-                //Response.Redirect("home.aspx");
+                reader.Close();
+                con.Close();
+                Response.Redirect("home.aspx");
             }
 
             if (!IsPostBack)
             {
-                string SQLStr = "SELECT * FROM tblUsers";
+                string SQLStr = "SELECT * FROM UserDatabase";
                 DataSet ds = Helper.RetrieveTable(SQLStr);
                 DataTable dt = ds.Tables[0];
                 //dt = SortTable(dt, "fname", "ASC");
@@ -35,11 +52,11 @@ namespace solaris_final
         {
             if (str.Length == 0)
             {
-                return "SELECT * FROM tblUsers";
+                return "SELECT * FROM UserDatabase";
             }
             //string SQLStr = $"SELECT * FROM tblUsers WHERE fname='{str}'";
             //string SQLStr = $"SELECT * FROM tblUsers WHERE fname LIKE '%{str}%'";
-            string SQLStr = $"SELECT * FROM tblUsers WHERE" +
+            string SQLStr = $"SELECT * FROM UserDatabase WHERE" +
                 $" fname LIKE '%{str}%' OR" +
                 $" lname LIKE '%{str}%' ";
             return SQLStr;
@@ -117,7 +134,7 @@ namespace solaris_final
         {
             int counter = 0;
             // בניית שאילתא
-            string SQL = $"UPDATE tblUsers " +
+            string SQL = $"UPDATE UserDatabase " +
                 $"SET {column} = '{Value}' " +
                 $"WHERE ";
             for (int i = 1; i < Request.Form.Count; i++)
@@ -141,7 +158,7 @@ namespace solaris_final
             message.InnerHtml = Helper.ExecuteNonQuery(SQL).ToString();
 
             // הדפסת הטבלה מחדש
-            string SQLStr = "SELECT * FROM tblUsers";
+            string SQLStr = "SELECT * FROM UserDatabase";
             DataSet ds = Helper.RetrieveTable(SQLStr);
             DataTable dt = ds.Tables[0];
             string table = Helper.BuildUsersTable(dt);

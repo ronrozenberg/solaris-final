@@ -46,6 +46,7 @@ document.getElementById("answer1").addEventListener("click", checkquestion);
 document.getElementById("answer2").addEventListener("click", checkquestion);
 document.getElementById("answer1").addEventListener("input", checkquestion);
 document.getElementById("answer2").addEventListener("input", checkquestion);
+document.getElementById("submit").addEventListener("mouseover", check);
 
 
 //שם פרטי
@@ -163,9 +164,39 @@ function checkquestion() {
     }
 
 }
+
+function check() {
+    // הרצת כל פונקציות הבדיקה
+    checkinputfname();
+    checkinputlname();
+    checkinputbirthDate();
+    checkemail();
+    checkusername();
+    checkpassword();
+    checkphone();
+    checkquestion();
+
+    // בדיקה אם יש שגיאות
+    var hasErrors = false
+    var errorElements = document.querySelectorAll('div.error');
+    console.log(errorElements);
+    for (var i = 0; i < errorElements.length; i++) {
+        if (errorElements[i].innerHTML !== '') {
+            hasErrors = true;
+            console.log(errorElements[i].innerHTML);
+            break;
+        }
+    }
+    // שליחת התוצאה בחזרה לשרת
+    document.getElementById('validationResult').value = hasErrors;
+
+    // אם יש שגיאות, הצג הודעה
+    if (hasErrors == true) {
+        alert('אנא תקן את כל השגיאות בטופס לפני השליחה');
+    }
+}
 //פונקציית הדפסת בעייה
 function displayError(error, id) {
     check = id + "Error";
-    console.log(document.getElementById(check).innerHTML);
     document.getElementById(check).innerHTML = error;
 }

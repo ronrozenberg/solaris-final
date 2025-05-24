@@ -7,22 +7,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <body class="registration-form">
     <h1 id="title">דף כניסה</h1>
-    <form>
+    <form method="post" action="login.aspx">
         <div class="field-group">
             <h2 class="fieldstag">שם משתמש:</h2>
-            <input type="text" class="text-input" name="userName" id="userName" runat="server">
-            <div class="error" id="usernameError" runat="server"></div>
+            <input type="text" class="text-input" name="userName" id="userName">
+            <div class="error" id="userNameError"></div>
             <style>.error {color: gold;}</style>
         </div>
 
         <div class="field-group">
             <h2 class="fieldstag">סיסמה:</h2>
-            <input type="password" class="text-input" name="password" id="password" runat="server">
-            <div class="error" id="passwordError" runat="server"></div>
+            <input type="password" class="text-input" name="password" id="password">
+            <div class="error" id="passwordError"></div>
         </div>
 
-        <button type="button" runat="server" id="submit" onserverclick="btnClick">כניסה</button>
+        <button type="submit" runat="server" id="submit">כניסה</button>
     </form>
-</body>
+    </body>
 <script src="login.js"></script>
 </asp:Content>
