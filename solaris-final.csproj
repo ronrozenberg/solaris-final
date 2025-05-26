@@ -306,6 +306,7 @@
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Planets.Master" />
+    <None Include="Properties\PublishProfiles\site26897-WebDeploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
