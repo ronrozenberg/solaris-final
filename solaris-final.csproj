@@ -140,8 +140,6 @@
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\Helper.cs" />
-    <Content Include="App_Code\User.cs" />
     <Compile Include="DeleteUpdate.aspx.cs">
       <DependentUpon>DeleteUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
