@@ -24,7 +24,7 @@
             <a href="Stats.aspx" id="tohide2" class="rubik-font tohide" runat="server">סטטיסטיקות</a>
             <a class="elem tohide" id="tohide3" runat="server">|</a>
             <a href="Admin.aspx" id="tohide4" class="rubik-font tohide" runat="server">משתמשים</a>
-            <p id="usernamegreeting" runat="server"></p>
+            <p id="usernamegreeting" runat="server" class="rubik-font"></p>
             <a class="rubik-font" id="logout" runat="server" href="logout.aspx">התנתקות</a>
          <hr>
         </header>

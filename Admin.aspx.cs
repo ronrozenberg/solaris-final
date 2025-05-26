@@ -64,11 +64,16 @@ namespace solaris_final
 
         public void Click_Filter1(object sender, EventArgs e)
         {
-            string SQLStr = BuildSQLStr(Request.Form["filter"]);
-            DataSet ds = Helper.RetrieveTable(SQLStr);
-            string table = Helper.BuildUsersTable(ds.Tables[0]);
+            string filter = Request.Form["filter"];
+            DataSet ds = Helper.RetrieveTable("SELECT * FROM UserDatabase");
+            DataTable dt = ds.Tables[0];
+
+            dt = Helper.FilterTable(dt, filter);
+
+            string table = Helper.BuildUsersTable(dt);
             tableDiv.InnerHtml = table;
         }
+
 
         public void Sort(object sender, EventArgs e)
         {

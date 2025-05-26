@@ -14,6 +14,7 @@ namespace solaris_final
         {
             Application["counter"] = 0;
             Application["loggedin"] = 0;
+            Application["online"] = 0;
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -21,7 +22,14 @@ namespace solaris_final
             Session["globalusername"] = "אורח";
             Session["globalpassword"] = "";
             Session["login"] = false;
-            Session["online"] = 0;
+            if(Application["online"] != null)
+            {
+                Application["online"] = (int)Application["online"] + 1;
+            }
+            else
+            {
+                Application["online"] = 1;
+            }
 
             //3 משתמשים גלובאליים
             Session["username1"] = "Itay";
@@ -52,7 +60,7 @@ namespace solaris_final
 
         protected void Session_End(object sender, EventArgs e)
         {
-            Session["online"] = (int)Session["online"] - 1;
+            Application["online"] = (int)Application["online"] - 1;
         }
 
         protected void Application_End(object sender, EventArgs e)

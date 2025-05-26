@@ -25,7 +25,6 @@ namespace solaris_final
                 logout.Style.Add("display", "none");
             }
             usernamegreeting.InnerHtml = "שלום " + Session["globalusername"];
-            System.Diagnostics.Debug.WriteLine("Button clicked!");
         }
 
     

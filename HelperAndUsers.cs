@@ -295,10 +295,29 @@ namespace solaris_final
             return dt.DefaultView.ToTable();
         }
 
-        public static DataTable FilterTable(DataTable dt, string column, string criteria)
+        public static DataTable FilterTable(DataTable dt, string filter)
         {
-            dt.DefaultView.RowFilter = column + "=" + criteria;
+            if (string.IsNullOrEmpty(filter))
+                return dt;
+
+            // Escape single quotes for DataTable RowFilter
+            filter = filter.Replace("'", "''");
+
+            // Build a RowFilter string for all columns
+            List<string> filters = new List<string>();
+            foreach (DataColumn col in dt.Columns)
+            {
+                if (col.DataType == typeof(string))
+                    filters.Add($"{col.ColumnName} LIKE '%{filter}%'");
+                else if (col.DataType == typeof(int) && int.TryParse(filter, out int intVal))
+                    filters.Add($"{col.ColumnName} = {intVal}");
+                else if (col.DataType == typeof(bool) && bool.TryParse(filter, out bool boolVal))
+                    filters.Add($"{col.ColumnName} = {boolVal}");
+                // Add more type checks as needed
+            }
+            dt.DefaultView.RowFilter = string.Join(" OR ", filters);
             return dt.DefaultView.ToTable();
         }
+
     }
-    }
+}

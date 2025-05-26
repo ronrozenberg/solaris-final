@@ -23,8 +23,6 @@ namespace solaris_final
                 tohide4.Style.Add("display", "none");
             }
             usernamegreeting.InnerHtml = "שלום " + Session["globalusername"];
-            System.Diagnostics.Debug.WriteLine("Button clicked!");
-            Session["online"] = (int)Session["online"] + 1;
         }
     }
 }

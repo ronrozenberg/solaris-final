@@ -13,7 +13,6 @@ namespace solaris_final
         {
             int visit = (int)Application["counter"];
             Application["counter"] = visit + 1;
-            Session["online"] = (int)Session["online"] + 1;
             if ((bool)Session["login"] == true)
             {
                 int loggedin = (int)Application["loggedin"] + 1;

@@ -34,7 +34,7 @@ namespace solaris_final
             }
             int val = 0;
             int online = 0;
-            online += (int)Session["online"];
+            online += (int)Application["online"];
             val += (int)Application["counter"];
             counter.InnerHtml = val.ToString();
             onlinec.InnerHtml = online.ToString();

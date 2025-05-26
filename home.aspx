@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <body class="homebody">
+        <p id="knemida" class="rubik-font">קנה מידה: שנה = 12 שניות</p>
         <div class="solar-system-container">
             <div class="sun"><a href="sun.aspx"><img src="images/sun-small.png" alt="sun-small" height="75"></a></div>
             <div class="planet planet-1"><a href="mercury.aspx"><img src="images/mercury-small.jpg" alt="mercury" height="15"></a></div>

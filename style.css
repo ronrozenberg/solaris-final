@@ -69,7 +69,7 @@ header {
 
 .planet-2 {
     --amplitude: 160px;
-    animation-duration: 7s;
+    animation-duration: 7.4s;
 }
 
 .planet-3 {
@@ -79,7 +79,7 @@ header {
 
 .planet-4 {
     --amplitude: 380px;
-    animation-duration: 23s;
+    animation-duration: 22.6s;
 }
 
 .planet-5 {
@@ -88,7 +88,7 @@ header {
 }
 
 .planet-6 {
-    --amplitude: 600px;
+    --amplitude: 650px;
     animation-duration: 354s;
 }
 
@@ -99,7 +99,7 @@ header {
 
 .planet-8 {
     --amplitude: 850px;
-    animation-duration: 1979s;
+    animation-duration: 1976s;
 }
 
 hr {
@@ -315,4 +315,9 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#knemida {
+    text-align: center;
+    color: antiquewhite;
 }
