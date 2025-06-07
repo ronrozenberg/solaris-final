@@ -202,6 +202,7 @@ input[type="checkbox"] {
     color: #ffffff;
     margin-bottom: 0.5rem;
     font-weight: bold;
+    text-align: right;
 }
 
 .text-input {
@@ -320,4 +321,69 @@ select {
 #knemida {
     text-align: center;
     color: antiquewhite;
+}
+
+.errorbody {
+    background-color: #442069;
+    font-family: 'Rubik', sans-serif;
+}
+
+#adminbody {
+    background-color: #442069;
+    font-family: 'Rubik', sans-serif;
+    color: lightgoldenrodyellow;
+}
+
+body {
+    background-color: #442069;
+}
+
+.loginerror {
+    font-size: 5rem;
+    color: lightgoldenrodyellow;
+}
+
+.tags {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.numbers {
+    font-size: 6rem;
+    text-align: center;
+}
+
+.statsholder {
+    margin-top: 5vh;
+}
+
+#stats {
+    color: lightgoldenrodyellow;
+    font-family: 'Rubik', sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+}
+
+#filter {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
 }

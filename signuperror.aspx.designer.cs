@@ -11,7 +11,7 @@ namespace solaris_final
 {
 
 
-    public partial class Users
+    public partial class signuperror
     {
     }
 }

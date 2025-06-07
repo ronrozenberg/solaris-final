@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace solaris_final
 {
-    public partial class Users : System.Web.UI.Page
+    public partial class signuperror : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

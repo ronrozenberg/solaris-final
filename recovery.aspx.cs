@@ -18,18 +18,15 @@ namespace solaris_final
                 string securityQuestion = Request.Form["securityQuestion"];
                 string answer = Request.Form["answer"];
 
-                // Clear previous messages
                 recoveryError.InnerHtml = "";
                 recoverySuccess.InnerHtml = "";
 
-                // Validate input
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(securityQuestion) || string.IsNullOrEmpty(answer))
                 {
                     recoveryError.InnerHtml = "אנא מלא את כל השדות";
                     return;
                 }
 
-                // Check if user exists and verify security question/answer
                 string SQL = $"SELECT password FROM {Helper.tblName} WHERE userName='{username}' AND " +
                            $"((question1=N'{securityQuestion}' AND answer1=N'{answer}') OR " +
                            $"(question2=N'{securityQuestion}' AND answer2='N{answer}'))";
@@ -43,7 +40,6 @@ namespace solaris_final
                     return;
                 }
 
-                // Success - show the password
                 string password = dt.Rows[0]["password"].ToString();
                 recoverySuccess.InnerHtml = $"הסיסמה שלך היא: <strong>{password}</strong><br/>" +
                                           "<a href='login.aspx' style='color: #4CAF50;'>לחץ כאן להתחברות</a>";

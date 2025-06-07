@@ -12,7 +12,6 @@ namespace solaris_final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Check admin rights using Helper.RetrieveTable
             string SQL = $"SELECT username, admin FROM {Helper.tblName} WHERE username='{Session["globalusername"]}' AND admin=1";
             DataSet adminDs = Helper.RetrieveTable(SQL);
             DataTable adminDt = adminDs.Tables[Helper.tblName];
@@ -92,7 +91,6 @@ namespace solaris_final
         {
             if (delete.Value == "")
                 return;
-            // update DataSet
             int Id = int.Parse(delete.Value);
             DataSet ds = (DataSet)Session["ds"];
             DataTable dt = ds.Tables[Helper.tblName];
@@ -107,7 +105,6 @@ namespace solaris_final
                 return;
             }
 
-            // Update DataBase with the updated dataSet
             string SQLStr = $"SELECT * FROM {Helper.tblName}";
             var con = new System.Data.SqlClient.SqlConnection(Helper.conString);
             var cmd = new System.Data.SqlClient.SqlCommand(SQLStr, con);
@@ -115,7 +112,6 @@ namespace solaris_final
             var builder = new System.Data.SqlClient.SqlCommandBuilder(ad);
             ad.Update(ds, Helper.tblName);
 
-            // הדפסת הטבלה המעודכנת
             string table = BuildUsersTable(dt);
             tableDiv.InnerHtml = table;
         }
@@ -124,7 +120,6 @@ namespace solaris_final
         {
             if (edit.Value == "")
                 return;
-            // update DataSet
             int Id = int.Parse(edit.Value);
             string expression = $"Id = {Id}";
             DataSet ds = (DataSet)Session["ds"];
@@ -144,7 +139,6 @@ namespace solaris_final
         {
             if (change.Value == "")
                 return;
-            // update DataSet
             int Id = int.Parse(change.Value);
             string expression = $"Id = {Id}";
             DataSet ds = (DataSet)Session["ds"];
@@ -160,7 +154,6 @@ namespace solaris_final
                 row["admin"] = true;
             }
 
-            // Update DataBase with the updated dataSet
             string SQLStr = $"SELECT * FROM {Helper.tblName}";
             var con = new System.Data.SqlClient.SqlConnection(Helper.conString);
             var cmd = new System.Data.SqlClient.SqlCommand(SQLStr, con);
@@ -168,7 +161,6 @@ namespace solaris_final
             var builder = new System.Data.SqlClient.SqlCommandBuilder(ad);
             ad.Update(ds, Helper.tblName);
 
-            // הדפסת הטבלה המעודכנת
             string table = BuildUsersTable(dt);
             tableDiv.InnerHtml = table;
         }

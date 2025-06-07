@@ -15,19 +15,15 @@ namespace solaris_final
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(Helper.conString);
 
-            // בניית פקודת SQL
             string SQL = $"SELECT username, admin FROM " + Helper.tblName +
                     $" WHERE username='{Session["globalusername"]}' AND admin=1";
             SqlCommand cmd = new SqlCommand(SQL, con);
 
-            // ביצוע השאילתא
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
-            // שימוש בנתונים שהתקבלו
             User user = new User();
             if (!reader.HasRows)
             {
@@ -41,7 +37,6 @@ namespace solaris_final
                 string SQLStr = "SELECT * FROM UserDatabase";
                 DataSet ds = Helper.RetrieveTable(SQLStr);
                 DataTable dt = ds.Tables[0];
-                //dt = SortTable(dt, "fname", "ASC");
                 string table = Helper.BuildUsersTable(dt);
                 tableDiv.InnerHtml = table;
             }
@@ -53,8 +48,6 @@ namespace solaris_final
             {
                 return "SELECT * FROM UserDatabase";
             }
-            //string SQLStr = $"SELECT * FROM UserDatabase WHERE fname='{str}'";
-            //string SQLStr = $"SELECT * FROM UserDatabase WHERE fname LIKE '%{str}%'";
             string SQLStr = $"SELECT * FROM UserDatabase WHERE" +
                 $" fname LIKE '%{str}%' OR" +
                 $" lname LIKE '%{str}%' ";
@@ -83,7 +76,6 @@ namespace solaris_final
         public void Delete(object sender, EventArgs e)
         {
             int Id;
-            // בניית מערך של משתמשים למחיקה
             List<int> usersList = new List<int>();
 
             for (int i = 1; i < Request.Form.Count; i++)
@@ -98,7 +90,6 @@ namespace solaris_final
 
             Helper.Delete(IdToDelete);
 
-            // הדפסת הטבלה המעודכנת
             DataSet ds = Helper.RetrieveTable(BuildSQLStr(""));
             string table = Helper.BuildUsersTable(ds.Tables[Helper.tblName]);
             tableDiv.InnerHtml = table;
@@ -137,7 +128,6 @@ namespace solaris_final
         public void Changeadmin(string column, string Value)
         {
             int counter = 0;
-            // בניית שאילתא
             string SQL = $"UPDATE UserDatabase " +
                 $"SET {column} = '{Value}' " +
                 $"WHERE ";
@@ -158,10 +148,8 @@ namespace solaris_final
                 return;
             }
 
-            // עדכון בסיס הנתונים
             message.InnerHtml = Helper.ExecuteNonQuery(SQL).ToString();
 
-            // הדפסת הטבלה מחדש
             string SQLStr = "SELECT * FROM UserDatabase";
             DataSet ds = Helper.RetrieveTable(SQLStr);
             DataTable dt = ds.Tables[0];

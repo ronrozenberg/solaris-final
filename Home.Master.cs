@@ -31,19 +31,15 @@ namespace solaris_final
 
     public static User GetRow(string userName)
         {
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(Helper.conString);
 
-            // בניית פקודת SQL
             string SQL = $"SELECT username, admin FROM " + Helper.tblName +
                     $" WHERE username='{userName}'";
             SqlCommand cmd = new SqlCommand(SQL, con);
 
-            // ביצוע השאילתא
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
-            // שימוש בנתונים שהתקבלו
             User user = new User();
             if (reader.HasRows)
             {

@@ -1,0 +1,1 @@
+﻿UPDATE [dbo].[UserDatabase] SET city = 'NA' WHERE city IS NULL;

@@ -105,8 +105,7 @@
            <input type="text" class="text-input" id="answer2" name="answer2">  
            <div class="error" id="answer2Error"></div>  
        </div>  
-       <div style="display:hidden" id="validationResult" name="validationResult"></div> 
-       <button type="submit" id="submit">שליחה</button>  
+       <asp:button id="submit" text="שליחה" onclientclick="return validateAll()" runat="server" onclick="Submit_Click" />
        <button type="reset" id="reset">ניקוי</button>  
    </form>  
 </body>  

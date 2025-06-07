@@ -1,40 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="solaris_final.Admin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <style>
-        body{
-            background-color:#442069;
-            color:lightgoldenrodyellow;
-            font-family:'Rubik', sans-serif;
-        }
-
-        h1{
-            color:lightgoldenrodyellow;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 800px;
-            margin: 20px auto;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            font-weight: bold;
-        }
-        h2 {
-                text-align: center;
-        }
-        #filter{
-            width:80%;
-            margin-left:10%;
-            margin-right:10%;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="adminbody">
     <h1>דף משתמשים</h1>
     
     <br />
@@ -67,5 +35,6 @@
     <div runat="server" id="message1">
 
     </div>
+     </div>
 </asp:Content>
 

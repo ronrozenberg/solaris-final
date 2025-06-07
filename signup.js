@@ -1,5 +1,4 @@
-﻿//הגדרת אלמנטים
-var firstName = document.getElementById("firstName").value;
+﻿var firstName = document.getElementById("firstName").value;
 var lastName = document.getElementById("lastName").value;
 var birthDate = document.getElementById("birthDate").value;
 var username = document.getElementById("username").value;
@@ -7,25 +6,18 @@ var password = document.getElementById("password").value;
 var phone = document.getElementById("phone").value;
 var email = document.getElementById("email").value;
 var city = document.getElementById("city").value;
-//שאלות שחזור
 var question1 = document.getElementById("question1").value;
 var question2 = document.getElementById("question2").value;
 var answer1 = document.getElementById("answer1").value;
 var answer2 = document.getElementById("answer2").value;
 
-//בדיקות regex עברית אנגלית
 var english = /^[A-Za-z]*$/;
 var hebrew = /^[\u0590-\u05fe]*$/;
-//בודק אם מתחיל באות גדולה, ומכיל איזשהי אות אנגלית/מספר/תו מיוחד
 var usernamecheck = /^[A-Z][!-~][^ ]*$/;
-//בודק אם מכיל אות גדולה, מספר ותו מיוחד, האם אות חוקית והאם בין 6-12 תווים ואין 3 אותיות חוזרות
 var passwordcheck = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9\s])(?!.*(.)\1\1)[!-~]{6,12}$/;
-// בדיקת מספר טלפון
 var phonecheck = /^0[57]([\d]{0,1})([-]{0,1})\d{7}$/;
-//בדיקת email
 var emailcheck = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;
 
-//עדכוני המשתנים לפי פעולות
 document.getElementById("firstName").addEventListener("click", checkinputfname);
 document.getElementById("firstName").addEventListener("input", checkinputfname);
 document.getElementById("lastName").addEventListener("click", checkinputlname);
@@ -49,7 +41,6 @@ document.getElementById("answer2").addEventListener("input", checkquestion);
 document.getElementById("submit").addEventListener("mouseover", check);
 
 
-//שם פרטי
 function checkinputfname() {
     firstName = document.getElementById("firstName").value;
     if (firstName == "") {
@@ -64,7 +55,6 @@ function checkinputfname() {
     }
 }
 
-//שם משפחה
 function checkinputlname() {
     lastName = document.getElementById("lastName").value;
     if (lastName == "") {
@@ -79,7 +69,6 @@ function checkinputlname() {
     }
 }
 
-//תאריך לידה
 function checkinputbirthDate() {
     birthDate = document.getElementById("birthDate").value;
     if (!birthDate) {
@@ -87,7 +76,6 @@ function checkinputbirthDate() {
     } else displayError("", "birthDate");
 }
 
-//אימייל
 function checkemail() {
     email = document.getElementById("email").value;
     if (emailcheck.test(email) == true) {
@@ -95,7 +83,6 @@ function checkemail() {
     } else displayError("יש להזין אימייל תקני", "email")
 }
 
-//שם משתמש
 function checkusername() {
     username = document.getElementById("username").value;
     if (usernamecheck.test(username) == true) {
@@ -104,7 +91,6 @@ function checkusername() {
     } else displayError("על שם המשתמש להתחיל באות אנגלית גדולה, להיות לפחות 2 תווים ולהכיל אותיות אנגליות, סימנים ומספרים בלבד ללא רווחים.", "username");
 }
 
-//סיסמה
 function checkpassword() {
     password = document.getElementById("password").value;
     if (passwordcheck.test(password) == true) {
@@ -113,7 +99,6 @@ function checkpassword() {
     } else displayError(" על הסיסמה להיות בין 6-12 תווים, להכיל אותיות אנגליות/מספרים/מיוחדים, אות גודלה וחובה אחד מכל אחד לפחות ולא להכיל את אותה אות 3 פעמים", "password");
 }
 
-//טלפון
 function checkphone() {
     phone = document.getElementById("phone").value;
     if (phonecheck.test(phone) == true) {
@@ -121,13 +106,11 @@ function checkphone() {
     } else displayError("מספר טלפון צריך להתחיל בקידומת 05 או 07 ולהכיל מקף אחרי הקידומת", "phone");
 }
 
-//האם לפחות אופציה אחת לחוצה במין
 function checkgender() {
     if (!document.getElementById("male").checked && !document.getElementById("female").checked && !document.getElementById("other").checked) {
         displayError("יש להזין מין", "gender");
     } else displayError("", "gender");
 }
-//האם לפחות לשאלה אחת יש תשובה
 function checkquestion() {
     question1 = document.getElementById("question1").value;
     question2 = document.getElementById("question2").value;
@@ -165,8 +148,7 @@ function checkquestion() {
 
 }
 
-function check() {
-    // הרצת כל פונקציות הבדיקה
+function validateAll() {
     checkinputfname();
     checkinputlname();
     checkinputbirthDate();
@@ -176,26 +158,18 @@ function check() {
     checkphone();
     checkquestion();
 
-    // בדיקה אם יש שגיאות
-    var hasErrors = false
+    var hasnoErrors = true;
     var errorElements = document.querySelectorAll('div.error');
     console.log(errorElements);
     for (var i = 0; i < errorElements.length; i++) {
         if (errorElements[i].innerHTML !== '') {
-            hasErrors = true;
+            hasnoErrors = false;
             console.log(errorElements[i].innerHTML);
-            break;
         }
-    }
-    // שליחת התוצאה בחזרה לשרת
-    document.getElementById('validationResult').value = hasErrors;
-
-    // אם יש שגיאות, הצג הודעה
-    if (hasErrors == true) {
-        alert('אנא תקן את כל השגיאות בטופס לפני השליחה');
-    }
+    } 
+    console.log("hasnoErrors: " + hasnoErrors);
+    return hasnoErrors;   
 }
-//פונקציית הדפסת בעייה
 function displayError(error, id) {
     check = id + "Error";
     document.getElementById(check).innerHTML = error;

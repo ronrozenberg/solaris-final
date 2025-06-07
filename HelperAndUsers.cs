@@ -26,7 +26,7 @@ namespace solaris_final
         public User()
         {
             Id = -1;
-            username = "אורח";
+            username = "ן¿½ן¿½ן¿½ן¿½";
             password = "";
             fname = "";
             lname = "";
@@ -43,28 +43,21 @@ namespace solaris_final
     }
     public static class Helper
     {
-        public const string DBName = "Database1.mdf";   //Name of the MSSQL Database.
-        public const string tblName = "UserDatabase";      // Name of the user Table in the Database
+        public const string DBName = "Database1.mdf";
+        public const string tblName = "UserDatabase";
         public const string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\"
-                                        + DBName + ";Integrated Security=True";   // The Data Base is in the App_Data = |DataDirectory|
+                                        + DBName + ";Integrated Security=True";
 
         public static DataSet RetrieveTable(string SQLStr)
-        // Gets A table from the data base acording to the SELECT Command in SQLStr;
-        // Returns DataSet with the Table.
         {
-            // connect to DataBase
             SqlConnection con = new SqlConnection(conString);
 
-            // Build SQL Query
             SqlCommand cmd = new SqlCommand(SQLStr, con);
 
-            // Build DataAdapter
             SqlDataAdapter ad = new SqlDataAdapter(cmd);
 
-            // Build DataSet to store the data
             DataSet ds = new DataSet();
 
-            // Get Data form DataBase into the DataSet
             ad.Fill(ds, tblName);
 
             return ds;
@@ -72,13 +65,10 @@ namespace solaris_final
 
         public static object GetScalar(string SQL)
         {
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
-            // בניית פקודת SQL
             SqlCommand cmd = new SqlCommand(SQL, con);
 
-            // ביצוע השאילתא
             con.Open();
             object scalar = cmd.ExecuteScalar();
             con.Close();
@@ -88,65 +78,49 @@ namespace solaris_final
 
         public static int ExecuteNonQuery(string SQL)
         {
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
-            // בניית פקודת SQL
             SqlCommand cmd = new SqlCommand(SQL, con);
 
-            // ביצוע השאילתא
             con.Open();
             int n = cmd.ExecuteNonQuery();
             con.Close();
 
-            // return the number of rows affected
             return n;
         }
 
         public static void Delete(int[] IdToDelete)
-        // The Array "IdToDelete" contain the id of the users to delete. 
-        // Delets all the users in the array "IdToDelete".
         {
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
-            // טעינת הנתונים
             string SQL = "SELECT * FROM " + tblName;
             SqlCommand cmd = new SqlCommand(SQL, con);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             adapter.Fill(ds, tblName);
 
-            // מחיקת שורות שנבחרו מתוך הדאטה סט
             for (int i = 0; i < IdToDelete.Length; i++)
             {
                 DataRow[] dr = ds.Tables[tblName].Select($"Id = {IdToDelete[i]}");
                 dr[0].Delete();
             }
 
-            // עדכון הדאטה סט בבסיס הנתונים
             SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
             adapter.UpdateCommand = builder.GetDeleteCommand();
             adapter.Update(ds, tblName);
         }
 
         public static void Update(User user)
-        // The Method recieve a user objects. Find the user in the DataBase acording to his Id and update all the other properties in DB.
         {
-            // HttpRequest Request
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
-            // בניית פקודת SQL
             string SQLStr = "SELECT * FROM " + Helper.tblName + $" Where Id={user.Id}";
             SqlCommand cmd = new SqlCommand(SQLStr, con);
 
-            //  טעינת הנתונים לתוך DataSet
             DataSet ds = new DataSet();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(ds, tblName);
 
-            // בניית השורה להוספה
             DataRow dr = ds.Tables[tblName].Rows[0];
             dr["fname"] = user.fname;
             dr["lname"] = user.lname;
@@ -155,7 +129,6 @@ namespace solaris_final
             dr["date"] = user.date;
             dr["city"] = user.city;
 
-            // עדכון הדאטה סט בבסיס הנתונים
             SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
             adapter.UpdateCommand = builder.GetUpdateCommand();
             adapter.Update(ds, tblName);
@@ -163,25 +136,17 @@ namespace solaris_final
         }
 
         public static void Insert(User user)
-        // The Method recieve a user objects and insert it to the Database as new row. 
-        // The Method does't check if the user is already taken.
         {
-            //HttpRequest Request
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
-            // בניית פקודת SQL
             string SQLStr = $"SELECT * FROM " + tblName + " WHERE 0=1";
             SqlCommand cmd = new SqlCommand(SQLStr, con);
 
-            // בניית DataSet
             DataSet ds = new DataSet();
 
-            // טעינת סכימת הנתונים
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(ds, tblName);
 
-            // בניית השורה להוספה
             DataRow dr = ds.Tables[tblName].NewRow();
             dr["fname"] = user.fname;
             dr["lname"] = user.lname;
@@ -191,31 +156,23 @@ namespace solaris_final
             dr["city"] = user.city;
             ds.Tables[tblName].Rows.Add(dr);
 
-            // עדכון הדאטה סט בבסיס הנתונים
             SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
             adapter.UpdateCommand = builder.GetInsertCommand();
             adapter.Update(ds, tblName);
         }
 
         public static User GetRow(string username, string password)
-        // The Method check if there is a user with username and Password. 
-        // If true the Method return a user with the first Name and admin property.
-        // If not the Method return a user with first name "Visitor" and admin = false
 
         {
-            // התחברות למסד הנתונים
             SqlConnection con = new SqlConnection(conString);
 
-            // בניית פקודת SQL
             string SQL = $"SELECT fname, admin FROM " + tblName +
                     $" WHERE username='{username}' AND password = '{password}'";
             SqlCommand cmd = new SqlCommand(SQL, con);
 
-            // ביצוע השאילתא
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
-            // שימוש בנתונים שהתקבלו
             User user = new User();
             if (reader.HasRows)
             {
@@ -234,7 +191,6 @@ namespace solaris_final
         }
 
         public static string BuildSimpleUsersTable(DataTable dt)
-        // the Method Build HTML user Table using the users in the DataTable dt.
         {
             string str = "<table class='usersTable' align='center'>";
             str += "<tr>";
@@ -258,7 +214,6 @@ namespace solaris_final
         }
 
         public static string BuildUsersTable(DataTable dt)
-        // the Method Build HTML user Table with checkBoxes using the users in the DataTable dt.
         {
 
             string str = "<table class='usersTable' align='center'>";
@@ -300,10 +255,8 @@ namespace solaris_final
             if (string.IsNullOrEmpty(filter))
                 return dt;
 
-            // Escape single quotes for DataTable RowFilter
             filter = filter.Replace("'", "''");
 
-            // Build a RowFilter string for all columns
             List<string> filters = new List<string>();
             foreach (DataColumn col in dt.Columns)
             {
@@ -313,7 +266,6 @@ namespace solaris_final
                     filters.Add($"{col.ColumnName} = {intVal}");
                 else if (col.DataType == typeof(bool) && bool.TryParse(filter, out bool boolVal))
                     filters.Add($"{col.ColumnName} = {boolVal}");
-                // Add more type checks as needed
             }
             dt.DefaultView.RowFilter = string.Join(" OR ", filters);
             return dt.DefaultView.ToTable();

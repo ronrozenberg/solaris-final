@@ -1,0 +1,1 @@
+﻿SELECT * FROM [dbo].[UserDatabase] WHERE username LIKE 'L%';

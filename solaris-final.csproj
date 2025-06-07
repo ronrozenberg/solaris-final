@@ -124,11 +124,22 @@
     <Content Include="saturn.aspx" />
     <Content Include="signup.aspx" />
     <Content Include="signup.js" />
+    <Content Include="signuperror.aspx" />
+    <Content Include="sqlqueries-examples\משימה10.sql" />
+    <Content Include="sqlqueries-examples\משימה11.sql" />
+    <Content Include="sqlqueries-examples\משימה12.sql" />
+    <Content Include="sqlqueries-examples\משימה210.sql" />
+    <Content Include="sqlqueries-examples\משימה3.sql" />
+    <Content Include="sqlqueries-examples\משימה4.sql" />
+    <Content Include="sqlqueries-examples\משימה5.sql" />
+    <Content Include="sqlqueries-examples\משימה6.sql" />
+    <Content Include="sqlqueries-examples\משימה7.sql" />
+    <Content Include="sqlqueries-examples\משימה8.sql" />
+    <Content Include="sqlqueries-examples\משימה9.sql" />
     <Content Include="Stats.aspx" />
     <Content Include="style.css" />
     <Content Include="sun.aspx" />
     <Content Include="uranus.aspx" />
-    <Content Include="Users.aspx" />
     <Content Include="venus.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -264,6 +275,13 @@
     <Compile Include="signup.aspx.designer.cs">
       <DependentUpon>signup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="signuperror.aspx.cs">
+      <DependentUpon>signuperror.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="signuperror.aspx.designer.cs">
+      <DependentUpon>signuperror.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Stats.aspx.cs">
       <DependentUpon>Stats.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -284,13 +302,6 @@
     </Compile>
     <Compile Include="uranus.aspx.designer.cs">
       <DependentUpon>uranus.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Users.aspx.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Users.aspx.designer.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="venus.aspx.cs">
       <DependentUpon>venus.aspx</DependentUpon>

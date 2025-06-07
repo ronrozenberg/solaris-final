@@ -31,7 +31,6 @@ namespace solaris_final
                 Application["online"] = 1;
             }
 
-            //3 משתמשים גלובאליים
             Session["username1"] = "Itay";
             Session["username2"] = "Moshon";
             Session["username3"] = "Ron";
