@@ -124,6 +124,20 @@ namespace solaris_final
         {
             Changeadmin("admin", "False");
         }
+        public string BuildSQLStr(string column, string order)
+        {
+            string SQLStr = $"SELECT * FROM " + Helper.tblName +
+                $" ORDER BY {column} {order}";
+            return SQLStr;
+        }
+
+        public void Click_Sort(object sender, EventArgs e)
+        {
+            string SQLStr = BuildSQLStr(Columns.Value, Request.Form["order"]);
+            DataSet ds = Helper.RetrieveTable(SQLStr);
+            string table = Helper.BuildSimpleUsersTable(ds.Tables[0]);
+            tableDiv.InnerHtml = table;
+        }
 
         public void Changeadmin(string column, string Value)
         {

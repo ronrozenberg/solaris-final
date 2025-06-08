@@ -69,6 +69,24 @@ namespace solaris_final
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnUser;
 
         /// <summary>
+        /// Columns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect Columns;
+
+        /// <summary>
+        /// btnSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnSort;
+
+        /// <summary>
         /// tableDiv control.
         /// </summary>
         /// <remarks>

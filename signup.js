@@ -146,6 +146,9 @@ function checkquestion() {
         displayError("יש לבחור שאלה", "question2Error");
     }
 
+    if (answer1.length > 50) { displayError("מקסימום תשובה 50 תווים", "answer1"); }
+    if (answer2.length > 50) { displayError("מקסימום תשובה 50 תווים", "answer2"); }
+
 }
 
 function validateAll() {

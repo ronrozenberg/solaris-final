@@ -26,7 +26,7 @@ namespace solaris_final
         public User()
         {
             Id = -1;
-            username = "����";
+            username = "אורח";
             password = "";
             fname = "";
             lname = "";
